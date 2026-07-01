@@ -1,31 +1,15 @@
 class Solution {
 public:
-    bool check(string& word1, string& word2) {
-        vector<int> v(26, 0);
-
-        for (char& ch : word1)
-            v[ch - 'a']++;
-
-        for (char& ch : word2)
-            v[ch - 'a']--;
-
-        for (int i = 0; i < 26; i++) {
-            if (v[i] != 0)
-                return false;
-        }
-        return true;
-    }
     vector<string> removeAnagrams(vector<string>& words) {
-        int n = words.size();
+        vector<string> ans{words[0]};
 
-        vector<string> result;
-
-        result.push_back(words[0]);
-
-        for (int i = 1; i < n; i++) {
-            if (!check(words[i], result.back()))
-                result.push_back(words[i]);
-        }
-        return result;
+        for (int i = 1; i < words.size(); i++) {
+            string a = ans.back(), b = words[i];
+            sort(a.begin(), a.end());
+            sort(b.begin(), b.end());
+            if (a != b){
+                ans.push_back(words[i]);
+        }}
+        return ans;
     }
 };
