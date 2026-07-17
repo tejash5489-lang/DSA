@@ -1,12 +1,12 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        int n=nums.size();
-        unordered_map<int,int> mp;
-        for(int i=0;i<n;i++){
-            mp[nums[i]]++;
-            if(mp[nums[i]]>1) return nums[i];
+        int i = 0;
+        for(; i < nums.size(); i++){
+            int idx = abs(nums[i]);
+            if(nums[idx] < 0) break;
+            nums[idx] *= -1;
         }
-        return 0;
+        return abs(nums[i]);
     }
 };
